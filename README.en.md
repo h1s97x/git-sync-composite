@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: h1s97x/git-sync-composite@v1
+      - uses: h1s97x/git-sync-composite@v0.0.1
         with:
           target_url: https://git.example.com/<org>/<repo>.git
           username: <your-username>
@@ -48,7 +48,7 @@ jobs:
 
 Replace the target repository URL and account with your own. Branches created by `dependabot` additionally need [Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/troubleshooting-dependabot/troubleshooting-dependabot-on-github-actions#accessing-secrets).
 
-To publish on the Marketplace, push a version tag such as `v1` and check "Publish to GitHub Marketplace" when creating the Release (`action.yml` is already at the repository root).
+To publish on the Marketplace, push a version tag such as `v0.0.1` and check "Publish to GitHub Marketplace" when creating the Release (`action.yml` is already at the repository root).
 
 ## Parameters
 

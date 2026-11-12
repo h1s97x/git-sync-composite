@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: h1s97x/git-sync-composite@v1
+      - uses: h1s97x/git-sync-composite@v0.0.1
         with:
           target_url: https://git.example.com/<org>/<repo>.git
           username: <your-username>
@@ -48,7 +48,7 @@ jobs:
 
 把示例中的目标仓库地址和账号换成你自己的。`dependabot` 创建的分支还需要配置 [Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/troubleshooting-dependabot/troubleshooting-dependabot-on-github-actions#accessing-secrets)。
 
-发布到 Marketplace：推送 `v1` 这类版本 tag，创建 Release 时勾选 "Publish to GitHub Marketplace"（`action.yml` 位于仓库根目录，已满足要求）。
+发布到 Marketplace：推送 `v0.0.1` 这类版本 tag，创建 Release 时勾选 "Publish to GitHub Marketplace"（`action.yml` 位于仓库根目录，已满足要求）。
 
 ## 参数说明
 
