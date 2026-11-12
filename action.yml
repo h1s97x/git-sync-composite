@@ -1,0 +1,51 @@
+name: 'Git Sync (Composite)'
+description: 'Lightweight HTTPS push mirroring on the runner, without building a Docker image'
+author: 'h1s97x'
+
+inputs:
+  target_url:
+    description: 'Target repository URL, e.g. https://git.example.com/<org>/<repo>.git'
+    required: true
+  username:
+    description: 'Username for HTTPS auth'
+    required: false
+  password:
+    description: 'Password or access token for HTTPS auth. Always pass a CI secret.'
+    required: false
+  branch:
+    description: 'Sync only this branch. Leave empty to sync all branches.'
+    required: false
+  force:
+    description: 'Force push. Must be true or false.'
+    required: false
+    default: 'false'
+  push_tags:
+    description: 'Push tags to the target repository'
+    required: false
+    default: 'false'
+  fetch_options:
+    description: 'Extra options passed to git fetch, e.g. --depth=1'
+    required: false
+  git_user:
+    description: 'Git committer name'
+    required: false
+  git_email:
+    description: 'Git committer email'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Sync
+      shell: bash
+      env:
+        PLUGIN_TARGET_URL: ${{ inputs.target_url }}
+        PLUGIN_USERNAME: ${{ inputs.username }}
+        PLUGIN_PASSWORD: ${{ inputs.password }}
+        PLUGIN_BRANCH: ${{ inputs.branch }}
+        PLUGIN_FORCE: ${{ inputs.force }}
+        PLUGIN_PUSH_TAGS: ${{ inputs.push_tags }}
+        PLUGIN_FETCH_OPTIONS: ${{ inputs.fetch_options }}
+        PLUGIN_GIT_USER: ${{ inputs.git_user }}
+        PLUGIN_GIT_EMAIL: ${{ inputs.git_email }}
+      run: bash "${{ github.action_path }}/sync.sh"
